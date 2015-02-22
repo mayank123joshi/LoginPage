@@ -15,6 +15,7 @@
 		<junit.version>4.11</junit.version>
 		<log4j.version>1.2.17</log4j.version>
 		<freemarker.version>2.3.21</freemarker.version>
+		<jcl-over-slf4j.version>1.7.5</jcl-over-slf4j.version>
 		<mavencompilerpluginversion>2.3.2</mavencompilerpluginversion>
 		<mavenjarpluginversion>2.4</mavenjarpluginversion>
 		<maven.tomcat.port>8989</maven.tomcat.port>
@@ -36,7 +37,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
-
+            <exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -61,6 +67,12 @@
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>${jstl.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${jcl-over-slf4j.version}</version>
 		</dependency>
 
 		<!-- FreeMarker -->
