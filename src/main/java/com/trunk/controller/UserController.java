@@ -41,13 +41,13 @@ public class UserController {
          logger.info("Password" + user.getPassword());
          logger.info("Auth status" + user.isAuthenticated());
          
-         if(user.getUsername()=="mayank" && user.getPassword()=="password")
+         if(user.getUsername().equals("mayank") && "password".equals(user.getPassword()))
         	 user.setIsAuthenticated(true);
          
          logger.info("Auth status" + user.isAuthenticated());
 	     if(user.isAuthenticated())
 	    	 return "success";
 	     else
-	    	 return "redirect:index.html";
+	    	 return "redirect:login.html";
     }
 }
