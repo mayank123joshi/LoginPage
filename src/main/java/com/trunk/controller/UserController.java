@@ -28,23 +28,26 @@ public class UserController {
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(@ModelAttribute("model") ModelMap model) {
-    	Login user = new Login();
-//    	model.put("login", user);
+    	model.addAttribute("user", new Login());
     	return "login";
     }
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute("user") Login user) {
-	    if(null != user && null != user.getUsername()
-	            && null != user.getPassword())
-			return "success";
-		else
-			return "login.html";
-    }  
-    @RequestMapping(value = "/success", method = RequestMethod.GET)
-    public String success(@ModelAttribute("user") Login user) {
-    	if(user.isAuthenticated())
-    		return "success";
-    	else
-    		return "redirect:index.html";
+    
+    @RequestMapping(value = "/success", method = RequestMethod.POST)
+    public String success(@ModelAttribute("user") Login user, ModelMap model) {
+    	 model.addAttribute("user", user.getUsername());
+         model.addAttribute("pass", user.getPassword());
+         model.addAttribute("auth", user.isAuthenticated());
+         logger.info("Username" + user.getUsername());
+         logger.info("Password" + user.getPassword());
+         logger.info("Auth status" + user.isAuthenticated());
+         
+         if(user.getUsername()=="mayank" && user.getPassword()=="password")
+        	 user.setIsAuthenticated(true);
+         
+         logger.info("Auth status" + user.isAuthenticated());
+	     if(user.isAuthenticated())
+	    	 return "success";
+	     else
+	    	 return "redirect:index.html";
     }
 }

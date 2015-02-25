@@ -14,7 +14,7 @@
 	<div id="content">
 	  <fieldset>
 	  	<legend>Please Login</legend>
-  		<form name="login" action="/LoginPage/login.html" method="post">
+  		<form name="login" action="/LoginPage/success.html" method="post">
    			UserName: <input type="text" name="username" id:"username" />	<br/>
   			Password: <input type="password" name="password" id:"password" />	<br/>
   			<input type="submit" value="  Login  " />
