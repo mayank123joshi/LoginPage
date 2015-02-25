@@ -19,6 +19,9 @@
   			Password: <input type="password" name="password" id:"password" />	<br/>
   			<input type="submit" value="  Login  " />
   		</form>
+  		<#if error??>
+			<p class="login_error">${error}</p>
+	  </#if>
 	  </fieldset>
 	</div>  
 </body>

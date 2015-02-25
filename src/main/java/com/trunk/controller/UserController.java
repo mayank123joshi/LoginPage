@@ -47,7 +47,17 @@ public class UserController {
          logger.info("Auth status" + user.isAuthenticated());
 	     if(user.isAuthenticated())
 	    	 return "success";
+	     else{
+	         model.addAttribute("error", "Incorrect Username or Password");
+	    	 return "login";
+	     }
+    }
+    
+    @RequestMapping(value = "/success", method = RequestMethod.GET)
+    public String successGet(@ModelAttribute("user") Login user, ModelMap model) {
+    	if(user.isAuthenticated())
+	    	 return "success";
 	     else
-	    	 return "redirect:login.html";
+	    	 return "unauthorized";
     }
 }

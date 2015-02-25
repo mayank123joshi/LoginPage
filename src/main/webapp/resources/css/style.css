@@ -11,6 +11,9 @@ body, input {
 	padding: 5px 0 0 5px;
 	font-size: 20px;
 }
+p.login_error {
+	color: rgb(255, 0, 0);
+}
 	
 .datatable {margin-bottom:5px;border:1px solid #eee;border-collapse:collapse;width:400px;max-width:100%;font-family:Calibri}
 .datatable th {padding:3px;border:1px solid #888;height:30px;background-color:#B2D487;text-align:center;vertical-align:middle;color:#444444}
