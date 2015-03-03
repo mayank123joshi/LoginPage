@@ -1,4 +1,4 @@
-# FreeMarkerApp : Basic Maven + Log4j + Spring MVC + CSS Web Project
+# LoginPage : Basic Authentication + Maven + Log4j + Spring MVC + CSS Web Project
 ReadMe
 
 1. Copy JDK Maven and Tomcat to expwebdevtools or clone it with git<br>
@@ -24,19 +24,35 @@ ReadMe
 			a) git clone https://github.com/mayank123joshi/FreeMarkerApp.git<br>
 <br>
 2. Create a web project <br>
-     expwebdevtools/apache-maven-3.2.5/bin/mvn archetype:generate -DgroupId=com.trunk -DartifactId=CounterFreeMarkerApp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false<br>
+     expwebdevtools/apache-maven-3.2.5/bin/mvn archetype:generate -DgroupId=com.trunk -DartifactId=LoginPage -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false<br>
 <br>
 3. Project Directory Layout<br>
 	.<br>
-	|____FreeMarkerApp<br>
+	|____LoginPage<br>
 	| |____pom.xml<br>
 	| |____src<br>
 	| | |____main<br>
 	| | | |____resources<br>
+        | | | | |___log4j.properties<br>
 	| | | |____webapp<br>
-	| | | | |____index.jsp<br>
+	| | | | |____resources<br>
+        | | | | | |____css<br>
+        | | | | | | |____style.css<br>
+        | | | | | |____img<br>
+        | | | | | | |____logo.png<br>
 	| | | | |____WEB-INF<br>
 	| | | | | |____web.xml<br>
+	| | | | | |____mvc-dispatcher-servlet.xml<br>
+	| | | | | |____view<br>
+	| | | | | |____view<br>
+	| | | | | | |____index.ftl<br>
+	| | | | | | |____login.ftl<br>
+	| | | | | | |____success.ftl<br>
+	| | | | | | |____unauthorized.ftl<br>
+        | | | |____java<br>
+        | | | | |____com<br>
+        | | | | |  |____trunk<br>
+        | | | | |  |____contoller<br>
 <br>
 4. To compile, test and package the project into a WAR file<br>
        mvn clean package<br>
