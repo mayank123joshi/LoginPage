@@ -20,7 +20,7 @@
 		<mavenjarpluginversion>2.4</mavenjarpluginversion>
 		<maven.tomcat.port>8989</maven.tomcat.port>
 		<tomcat7mavenpluginversion>2.2</tomcat7mavenpluginversion>
-		<project.path>/FreeMarkerApp</project.path>
+		<project.path>/LoginPage</project.path>
 	</properties>
 
 	<dependencies>
@@ -129,7 +129,7 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>${tomcat7mavenpluginversion}</version>
 				<configuration>
-					<path>/FreeMarkerApp</path>
+					<path>/LoginPage</path>
 				    <port>${maven.tomcat.port}</port>
 				</configuration>
 			</plugin>
