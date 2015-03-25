@@ -8,6 +8,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.http.ResponseEntity;
  
 @Controller
 public class UserController {
@@ -55,9 +57,15 @@ public class UserController {
     
     @RequestMapping(value = "/success", method = RequestMethod.GET)
     public String successGet(@ModelAttribute("user") Login user, ModelMap model) {
-    	if(user.isAuthenticated())
-	    	 return "success";
-	     else
+    	if(user.isAuthenticated()){
+    			RestTemplate restTemplate = new RestTemplate();
+    			ResponseEntity<String> restResponse = restTemplate.getForEntity(
+    	        "https://data.sparkfun.com/streams/dZ4EVmE8yGCRGx5XRX1W.json",
+    	        String.class);
+
+    			logger.info(restResponse);
+    			return "success";
+    	} else
 	    	 return "unauthorized";
     }
 }
