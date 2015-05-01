@@ -1,6 +1,7 @@
 package com.trunk.controller;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import com.trunk.controller.Login;
 
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 
 import javax.servlet.ServletException;
@@ -37,13 +40,15 @@ public class UserController {
      * @param model 
      * @return The index view (FTL)
      */
-    @RequestMapping(value = INDEX_PAGE, method = RequestMethod.GET)
+    @RequestMapping(value = { "/", INDEX_PAGE }, method = RequestMethod.GET)
     public String index(@ModelAttribute("model") ModelMap model) {
         return "index";
     }
-    
+
+    @Autowired
+    MessageSource messageSource;
     @RequestMapping(value = LOGIN_PAGE, method = RequestMethod.GET)
-    public String login(@ModelAttribute("model") ModelMap model) {
+    public String login(@ModelAttribute("model") ModelMap model, Locale locale) {
     	model.addAttribute("user", new Login());
     	return "login";
     }
@@ -56,15 +61,20 @@ public class UserController {
          model.addAttribute("auth", user.isAuthenticated());
          logger.info("Username" + user.getUsername());
          logger.info("Password" + user.getPassword());
-         logger.info("Auth status" + user.isAuthenticated());
+         logger.info("Auth status: " + user.isAuthenticated());
          
          if(user.getUsername().equals("mayank") && user.getPassword().equals("password"))
         	 user.setIsAuthenticated(true);
          
-         logger.info("Auth status" + user.isAuthenticated());
-	     if(user.isAuthenticated())
-	    	 return "success";
-	     else{
+	     if(user.isAuthenticated()){
+	    			RestTemplate restTemplate = new RestTemplate();
+	    			ResponseEntity<String> restResponse = restTemplate.getForEntity(
+	    	        "https://data.sparkfun.com/streams/dZ4EVmE8yGCRGx5XRX1W.json",
+	    	        String.class);
+
+	    			logger.info(restResponse);
+	    			return "success";
+	     }else{
 	         model.addAttribute("error", "Incorrect Username or Password");
 	    	 return "login";
 	     }
@@ -72,15 +82,6 @@ public class UserController {
     
     @RequestMapping(value = SUCCESS_PAGE, method = RequestMethod.GET)
     public String successGet(@ModelAttribute("user") Login user, ModelMap model) {
-    	if(user.isAuthenticated()){
-    			RestTemplate restTemplate = new RestTemplate();
-    			ResponseEntity<String> restResponse = restTemplate.getForEntity(
-    	        "https://data.sparkfun.com/streams/dZ4EVmE8yGCRGx5XRX1W.json",
-    	        String.class);
-
-    			logger.info(restResponse);
-    			return "success";
-    	} else
 	    	 return "unauthorized";
     }
     

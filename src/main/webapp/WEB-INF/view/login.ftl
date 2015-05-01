@@ -1,3 +1,5 @@
+<#import "/spring.ftl" as spring/>
+
 <html>
 <head>
 	<title>Login Page Web App</title>
@@ -5,6 +7,11 @@
 </head>
 
 <body>
+	<span style="float: right">
+	    <a href="?lang=en_US">en</a> 
+	    | 
+	    <a href="?lang=de_DE">de</a>
+	</span>
 	<div id="header">
 		<H2>
 			<img src="resources/img/logo.png" height="37" width="236" border="0px" src="" align="left"/></a> Login Page Sample
@@ -23,6 +30,8 @@
   			<input type="submit" value="  Login  " />
   		</form>
 	  </fieldset>
-	</div>  
+	</div>
+	<@spring.message "label.username"/>
+	The current locale is: ${.locale}  
 </body>
 </html>
