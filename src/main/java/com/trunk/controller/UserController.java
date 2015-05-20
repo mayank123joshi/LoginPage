@@ -56,14 +56,14 @@ public class UserController {
     @RequestMapping(value = SUCCESS_PAGE, method = RequestMethod.POST)
     public String success(@ModelAttribute("user") Login user, ModelMap model, HttpServletRequest request, HttpServletResponse response, BindingResult bindingresult,HttpSession session) throws ServletException, IOException{
          myServiceMethodSettingCookie(request, response);        //Do service call passing the response
-    	 model.addAttribute("user", user.getUsername());
-         model.addAttribute("pass", user.getPassword());
+    	 model.addAttribute("user", user.getInputEmail());
+         model.addAttribute("pass", user.getInputPassword());
          model.addAttribute("auth", user.isAuthenticated());
-         logger.info("Username" + user.getUsername());
-         logger.info("Password" + user.getPassword());
+         logger.info("Username: " + user.getInputEmail());
+         logger.info("Password: " + user.getInputPassword());
          logger.info("Auth status: " + user.isAuthenticated());
          
-         if(user.getUsername().equals("mayank") && user.getPassword().equals("password"))
+         if(user.getInputEmail().equals("mayank@gmail.com") && user.getInputPassword().equals("password"))
         	 user.setIsAuthenticated(true);
          
 	     if(user.isAuthenticated()){
@@ -75,7 +75,7 @@ public class UserController {
 	    			logger.info(restResponse);
 	    			return "success";
 	     }else{
-	         model.addAttribute("error", "Incorrect Username or Password");
+	         model.addAttribute("error", "true");
 	    	 return "login";
 	     }
     }

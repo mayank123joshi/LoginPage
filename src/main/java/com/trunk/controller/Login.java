@@ -3,24 +3,24 @@ package com.trunk.controller;
 public class Login {
 	  public Login(){}
 	  
-	  private String username;
-	  private String password;
+	  private String inputEmail;
+	  private String inputPassword;
 	  private boolean isAuthenticated;
 
-	  public String getPassword() {
-		  return password;
+	  public String getInputPassword() {
+		  return inputPassword;
 	  }
 
-	  public void setPassword(String password) {
-		  this.password = password;
+	  public void setInputPassword(String inputPassword) {
+		  this.inputPassword = inputPassword;
 	  }
 
-	  public String getUsername() {
-		  return username;
+	  public String getInputEmail() {
+		  return inputEmail;
 	  }
 
-	  public void setUsername(String username) {
-		  this.username = username;
+	  public void setInputEmail(String inputEmail) {
+		  this.inputEmail = inputEmail;
 	  }
 	  
 	  public void setIsAuthenticated(boolean isAuthenticated){
